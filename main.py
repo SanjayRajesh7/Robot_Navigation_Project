@@ -8,14 +8,14 @@ while True:
         option_chosen = int(option_chosen)
         if option_chosen == 1:
             robot_id = input("Enter a ID for the new robot : ").strip()
-            terrain.create_robot(robot_id)
+            print(terrain.create_robot(robot_id))
         elif option_chosen == 2:
             robot_id = input("Enter the ID of the robot to be moved : ").strip()
             direction_and_steps = input("Enter the direction and steps (eg format:- N3,S2,E7,W9) for the robot to move : ").strip()
-            terrain.move_robot(robot_id, direction_and_steps)
+            print(terrain.move_robot(robot_id, direction_and_steps))
         elif option_chosen == 3:
             robot_id = input("Enter the ID of the robot to find its position : ").strip()
-            terrain.get_robot_position(robot_id)
+            print(terrain.get_robot_position(robot_id))
         elif option_chosen == 4:
             terrain.get_all_robots_id_and_position()
         elif option_chosen == 5:
