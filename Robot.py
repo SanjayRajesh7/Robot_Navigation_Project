@@ -5,7 +5,6 @@ class Robot:
 
     def move(self, direction, steps, occupied_positions):
         x, y = self.position
-        print(direction,steps,occupied_positions)
         if direction == 'N':
             if x-steps>0:
                 while(steps):
