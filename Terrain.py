@@ -10,19 +10,21 @@ class Terrain:
             self.robots[robot_id] = Robot(robot_id)
             return f"Robot with ID {robot_id} is created successfully!!!."
     
-    def move_robot(self, robot_id, direction_and_steps):
+    def move_robot(self, robot_id, direction_and_steps,is_horse_move):
         if robot_id not in self.robots:
             return f"Robot with ID {robot_id} does not exist."
         else:
-            if len(direction_and_steps) != 2 or direction_and_steps[0].upper() not in ["N","S","E","W"] and not direction_and_steps[1].isdigit():
+            if len(direction_and_steps) not in [2,3] or direction_and_steps[1:].upper() not in ["N","S","E","W","NE","NW","SE","SW"] and not direction_and_steps[0].isdigit():
                 return "Invalid Input Format for Direction and Steps"
             else:
                 occupied_positions = {robot_properties.position for r_id, robot_properties in self.robots.items() if r_id != robot_id}
                 
-                direction = direction_and_steps[0].upper()
-                steps = int(direction_and_steps[1])
+                direction = direction_and_steps[1:].upper()
+                steps = int(direction_and_steps[0])
                 robot = self.robots[robot_id]
 
+                if is_horse_move:
+                    return robot.move(direction, steps, occupied_positions, is_horse_move)
                 return robot.move(direction, steps, occupied_positions)
 
     def get_robot_position(self, robot_id):
